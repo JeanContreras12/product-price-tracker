@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  web:
+    build: .
+    container_name: price-tracker-dev
+    command: uvicorn app.main:app --host 0.0.0.0 --port ${PORT} --reload
+    volumes:
+      - .:/app
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      - PYTHONUNBUFFERED=1
+    env_file:
+      - .env
