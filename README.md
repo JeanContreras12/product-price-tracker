@@ -31,7 +31,6 @@ product-price-tracker/
 ├── requirements.txt # Dependencias
 └── README.md # Documentación
 
-
 ## ⚙️ Variables de Entorno
 
 Crea un archivo `.env` en la raíz con:
