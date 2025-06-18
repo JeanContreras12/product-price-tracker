@@ -1,7 +1,9 @@
-from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse
+# main.py
+
+from fastapi import FastAPI
 from app.config import settings
 from app.logging_config import configure_logging
+from app.exception_handlers import global_exception_handler
 import logging
 
 # Configurar logs
@@ -13,15 +15,8 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Manejo global de excepciones
-@app.exception_handler(Exception)
-async def global_exception_handler(request: Request, exc: Exception):
-    logger = logging.getLogger()
-    logger.error(f"Excepción no controlada en {request.url}: {exc}", exc_info=True)
-    return JSONResponse(
-        status_code=500,
-        content={"detail": "Error interno del servidor"}
-    )
+# Agregar el manejador global de excepciones
+app.add_exception_handler(Exception, global_exception_handler)
 
 @app.get("/")
 def read_root():
