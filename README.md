@@ -17,6 +17,7 @@ Una API desarrollada en Python con **FastAPI** para hacer seguimiento de precios
 ---
 
 ## 🧱 Estructura del Proyecto
+```
 product-price-tracker/
 ├── app/
 │ ├── main.py # Punto de entrada de la API
@@ -30,7 +31,7 @@ product-price-tracker/
 ├── .env # Variables de entorno
 ├── requirements.txt # Dependencias
 └── README.md # Documentación
-
+```
 ## ⚙️ Variables de Entorno
 
 Crea un archivo `.env` en la raíz con:
@@ -38,7 +39,8 @@ Crea un archivo `.env` en la raíz con:
 ```env
 APP_ENV=development
 PORT=8000
-DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/...
+DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/.
+```
 
 ## 🐳 Uso con Docker
 
