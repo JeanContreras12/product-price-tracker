@@ -54,14 +54,15 @@ Esto levantará el servidor en http://localhost:8000 con autoreload y bind al pu
 Todos los logs se guardan en la carpeta /logs dentro del contenedor y se montan localmente.
 El nombre del archivo incluye la fecha: logs/app_YYYY-MM-DD.log.
 
-Manejo de Errores
+⚠️ Manejo de Errores
+
 La API incluye un manejador global de errores:
 
-Captura excepciones no controladas
+- Captura excepciones no controladas
 
-Escribe en el log con logger.error(...)
+- Escribe en el log con logger.error(...)
 
-Envía notificaciones a Discord (si se configura DISCORD_WEBHOOK_URL)
+- Envía notificaciones a Discord (si se configura DISCORD_WEBHOOK_URL)
 
 Ejemplo de error:
 ```error
@@ -74,15 +75,17 @@ Respuesta:
 }
 ```
 🧪 Probar
-Abrir en navegador: http://localhost:8000/
 
-Probar error: http://localhost:8000/error
+- Abrir en navegador: http://localhost:8000/
 
-Revisar logs: logs/app_YYYY-MM-DD.log
+- Probar error: http://localhost:8000/error
 
-Verificar notificación en canal de Discord
+- Revisar logs: logs/app_YYYY-MM-DD.log
+
+- Verificar notificación en canal de Discord
 
 ✅ Requisitos
+
 Python 3.11
 
 Docker & Docker Compose
