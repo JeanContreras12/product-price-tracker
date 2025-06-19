@@ -86,8 +86,8 @@ Respuesta:
 
 ✅ Requisitos
 
-Python 3.11
+- Python 3.11
 
-Docker & Docker Compose
+- Docker & Docker Compose
 
-Cuenta de Discord para configurar un webhook (opcional)
+- Cuenta de Discord para configurar un webhook (opcional)
