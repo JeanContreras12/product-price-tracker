@@ -43,8 +43,9 @@ DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/.
 ```
 
 ## 🐳 Uso con Docker
-
+```
 ├──  docker-compose up --build
+```
 Esto levantará el servidor en http://localhost:8000 con autoreload y bind al puerto definido en .env.
 
 
@@ -62,15 +63,15 @@ Escribe en el log con logger.error(...)
 Envía notificaciones a Discord (si se configura DISCORD_WEBHOOK_URL)
 
 Ejemplo de error:
-
-├──  GET /error
-
+```error
+GET /error
+```
 Respuesta:
-
+```
 {
   "detail": "Error interno del servidor"
 }
-
+```
 🧪 Probar
 Abrir en navegador: http://localhost:8000/
 
