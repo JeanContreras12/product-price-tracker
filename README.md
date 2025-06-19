@@ -44,12 +44,13 @@ DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/.
 
 ## 🐳 Uso con Docker
 ```
-├──  docker-compose up --build
+docker-compose up --build
 ```
 Esto levantará el servidor en http://localhost:8000 con autoreload y bind al puerto definido en .env.
 
 
 📄 Logs Persistentes
+
 Todos los logs se guardan en la carpeta /logs dentro del contenedor y se montan localmente.
 El nombre del archivo incluye la fecha: logs/app_YYYY-MM-DD.log.
 
