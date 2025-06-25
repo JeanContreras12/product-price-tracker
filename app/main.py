@@ -1,13 +1,18 @@
-# main.py
-
 from fastapi import FastAPI
 from app.config import settings
 from app.logging_config import configure_logging
 from app.exception_handlers import global_exception_handler
 import logging
+from app.database import engine
+from app.models import Base
 
-# Configurar logs
-configure_logging(settings.APP_ENV)
+
+# Configurar logs según entorno
+configure_logging()
+
+# Crear tablas al iniciar la app (si no existen)
+Base.metadata.create_all(bind=engine)
+
 
 app = FastAPI(
     title="Product Price Tracker",

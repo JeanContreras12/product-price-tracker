@@ -1,13 +1,15 @@
-
 from fastapi import Request
 from fastapi.responses import JSONResponse
-import logging, os, httpx
+import logging
+from app.config import settings
+import httpx
 
 async def global_exception_handler(request: Request, exc: Exception):
     logger = logging.getLogger()
     logger.error(f"Excepción no controlada en {request.url}: {exc}", exc_info=True)
 
-    webhook_url = os.getenv("DISCORD_WEBHOOK_URL")
+    webhook_url = settings.DISCORD_WEBHOOK_URL  # Usar la url desde settings
+
     if webhook_url:
         try:
             async with httpx.AsyncClient() as client:

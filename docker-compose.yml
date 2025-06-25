@@ -1,16 +1,33 @@
 version: "3.9"
 
 services:
+  db:
+    image: postgres:15
+    container_name: product-db
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
   web:
     build: .
     container_name: price-tracker-dev
     command: uvicorn app.main:app --host 0.0.0.0 --port ${PORT} --reload
     volumes:
       - .:/app
-      - ./logs:/app/logs
     ports:
       - "${PORT}:${PORT}"
     environment:
       - PYTHONUNBUFFERED=1
     env_file:
       - .env
+    depends_on:
+      - db
+
+volumes:
+  pgdata:

@@ -1,7 +1,15 @@
 import logging
 import os
-from datetime import datetime 
-def configure_logging(env: str):
+from datetime import datetime
+from app.config import settings  # Importa la configuración con APP_ENV
+
+def configure_logging():
+    """
+    Configura el logging según el entorno definido en settings.APP_ENV.
+    En desarrollo usa nivel DEBUG, en producción WARNING.
+    """
+    env = settings.APP_ENV  # Obtiene el entorno desde la configuración centralizada
+
     level = logging.DEBUG if env == "development" else logging.WARNING
 
     formatter = logging.Formatter(
@@ -10,11 +18,14 @@ def configure_logging(env: str):
     )
 
     log_dir = "logs"
-    os.makedirs(log_dir, exist_ok=True)
-    
+    try:
+        os.makedirs(log_dir, exist_ok=True)
+    except Exception as e:
+        print(f"No se pudo crear el directorio de logs: {e}")
+
     current_date = datetime.now().strftime("%d-%m-%Y")
     log_filename = f"{log_dir}/app_{current_date}.log"
-    
+
     file_handler = logging.FileHandler(log_filename)
     file_handler.setFormatter(formatter)
 
