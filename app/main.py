@@ -5,6 +5,7 @@ from app.exception_handlers import global_exception_handler
 import logging
 from app.database import engine
 from app.models import Base
+from app.routers import products
 
 
 # Configurar logs según entorno
@@ -37,3 +38,6 @@ def read_root():
 @app.get("/error")
 def trigger_error():
     raise ValueError("Esto es un error forzado para test")
+
+#CRUD
+app.include_router(products.router)
