@@ -5,15 +5,14 @@ from app.exception_handlers import global_exception_handler
 import logging
 from app.database import engine
 from app.models import Base
-from app.routers import products
+from app.routers.products import router_products
+from app.routers.scraper import router_scraper
 
-
-# Configurar logs según entorno
+# Configurar logs
 configure_logging()
 
-# Crear tablas al iniciar la app (si no existen)
+# Crear las tablas al iniciar
 Base.metadata.create_all(bind=engine)
-
 
 app = FastAPI(
     title="Product Price Tracker",
@@ -21,7 +20,6 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Agregar el manejador global de excepciones
 app.add_exception_handler(Exception, global_exception_handler)
 
 @app.get("/")
@@ -34,10 +32,12 @@ def read_root():
         "debug": settings.DEBUG
     }
 
-# Ruta que genera un error a propósito (para probar)
 @app.get("/error")
 def trigger_error():
     raise ValueError("Esto es un error forzado para test")
 
-#CRUD
-app.include_router(products.router)
+# Incluye correctamente ambos routers
+app.include_router(router_products)
+app.include_router(router_scraper)
+
+print("✅ products.py se ha importado correctamente")
